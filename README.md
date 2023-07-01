@@ -53,5 +53,3 @@ Addition:
 - [x] Use React hooks
 - [x] Maintain a well-structured and organized repository
 - [x] Commenting the code for better understanding
-
-Congratulations on completing all the requirements for your Next.js app! Great job!
