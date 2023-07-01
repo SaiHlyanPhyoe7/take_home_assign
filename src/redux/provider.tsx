@@ -4,8 +4,9 @@ import { ReactQueryProvider } from "@/app/ReactQueryProvider";
 import { MantineProvider } from "@mantine/core";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { childT } from "@/type";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: childT) {
   return (
     <ReactQueryProvider>
       <MantineProvider withGlobalStyles withNormalizeCSS>
