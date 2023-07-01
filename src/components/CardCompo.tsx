@@ -14,12 +14,16 @@ const CardCompo = ({ pokiValue }: any) => {
     dispatch(addPokiData(pokiValue));
   }, []);
 
+  // Retrieve the list of pokemons from the Redux store
   const pokemons = useSelector((state: RootState) => state.pokimon.pokemons);
+
+  // Track the selected cards and update the cart
   const [selectedCards, setSelectedCards] = useState<string[]>([]);
 
   const handleCardSelect = (poki: Pokemon) => {
     const selectedId = poki.id;
     if (selectedCards.includes(selectedId)) {
+      // Card is already selected, do nothing
     } else {
       setSelectedCards((prevSelectedCards) => [
         ...prevSelectedCards,
@@ -32,6 +36,7 @@ const CardCompo = ({ pokiValue }: any) => {
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-y-12">
+        {/* Render each pokemon card */}
         {pokemons?.map((poki: Pokemon, index: number) => {
           const isSelected = selectedCards.includes(poki.id);
           return (
@@ -40,6 +45,7 @@ const CardCompo = ({ pokiValue }: any) => {
               className="col-span-12 mx-auto w-10/12 space-y-1 md:col-span-6 md:w-11/12 lg:col-span-4 xl:w-3/5"
             >
               <Suspense fallback={<div>Loading...</div>}>
+                {/* Display the pokemon image */}
                 <div className="flex justify-center">
                   <Image
                     className="translate-y-14"
@@ -50,6 +56,7 @@ const CardCompo = ({ pokiValue }: any) => {
                   />
                 </div>
               </Suspense>
+              {/* Display pokemon details */}
               <div className="space-y-1 rounded-2xl bg-white pb-12 pt-16 shadow-md">
                 <p className="text-center text-2xl font-bold">{poki.name}</p>
                 <p className="text-center text-blue-500">
@@ -60,7 +67,7 @@ const CardCompo = ({ pokiValue }: any) => {
                   <p>{poki.stock} left</p>
                 </div>
               </div>
-
+              {/* Button to select/unselect the card */}
               <div className="flex w-full justify-center">
                 <button
                   onClick={() => handleCardSelect(poki)}
@@ -75,8 +82,7 @@ const CardCompo = ({ pokiValue }: any) => {
           );
         })}
       </div>
-
-      {/* Item on the Cart List is displayed */}
+      {/* Display the cart */}
       <ViewCartCompo />
     </div>
   );

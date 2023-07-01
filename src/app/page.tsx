@@ -4,8 +4,10 @@ import { getData } from "@/utils/getData";
 import { Suspense, use } from "react";
 
 export default function Home() {
+  // get serverside data
   const serverData = use(getData(1));
 
+  // add require value to the pokiValue
   const pokiValue = serverData?.data?.map((pokemon: any) => ({
     id: pokemon.id,
     img: pokemon.images.small,
@@ -24,6 +26,7 @@ export default function Home() {
       </Suspense>
 
       {/* Mainbody for Search & Filter & Cards */}
+      {/* Need to split as Components because of the Next Server Side App Directory */}
       <Suspense fallback={<div className="bg-red-400">Loading...</div>}>
         <MainBodyCompo mainCompoPokiValue={pokiValue} />
       </Suspense>

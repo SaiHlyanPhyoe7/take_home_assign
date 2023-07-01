@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project with [`App directory`]
 
+- Project URL: [TCG Marketplace](https://take-home-assign.vercel.app/)
+
 ## Getting Started
 
 First, run the development server:

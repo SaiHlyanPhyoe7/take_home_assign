@@ -1,4 +1,3 @@
-import { IconChevronDown, IconCircleCheckFilled } from "@tabler/icons-react";
 import Image from "next/image";
 import React from "react";
 import check from "@/assets/images/check_img.png";

@@ -7,13 +7,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 const ViewCartCompo = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false); // State to manage the open/close status of the modal
   const totalQuantity = useSelector(
     (state: RootState) => state.cart.totalQuantity
-  );
+  ); // Retrieve the total quantity from the Redux store
 
   const closeModal = () => {
-    setModalOpen(false);
+    setModalOpen(false); // Function to close the modal
   };
 
   return (
@@ -24,17 +24,18 @@ const ViewCartCompo = () => {
           className="relative left-0 w-full rounded-2xl bg-blue-600 py-2 text-xs font-medium text-white shadow-xl md:-left-10"
         >
           <div className="absolute -left-1 -top-1 h-4 w-4 rounded-full bg-red-500">
-            {totalQuantity}
+            {totalQuantity}{" "}
+            {/* Display the total quantity inside a red circle */}
           </div>
           <div className="flex items-center justify-center gap-2">
-            <IconShoppingCart style={{ padding: "3px" }} />
-            <p className="">View Cart</p>
+            <IconShoppingCart style={{ padding: "3px" }} />{" "}
+            <p className="">View Cart</p> {/* Text for the button */}
           </div>
         </button>
       )}
-
       {/* Modal Box */}
-      {modalOpen && <ModalComponent closeModal={closeModal} />}
+      {modalOpen && <ModalComponent closeModal={closeModal} />}{" "}
+      {/* Render the modal component when modalOpen is true */}
     </div>
   );
 };

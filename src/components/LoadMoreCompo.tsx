@@ -9,15 +9,16 @@ import { loadMoreT } from "@/type";
 import { fetchCards } from "@/utils/getData";
 
 const LoadMoreCompo = ({ debouncedName, type, rarity, set }: loadMoreT) => {
-  // console.log("From Loadmore Component:", { debouncedName, type, rarity, set });
   const dispatch = useDispatch();
   const [localCount, setLocalCount] = useState<number>(2);
 
   const handleLoadMore = async () => {
     setLocalCount(localCount + 1);
-    // console.log("Local Count is : ", localCount);
 
+    // Increment the load count in Redux
     dispatch(incrementLoadCount());
+
+    // Fetch more pokemon cards based on the current filters and load count
     const pokiValue = await fetchCards(
       debouncedName,
       type,
@@ -26,11 +27,13 @@ const LoadMoreCompo = ({ debouncedName, type, rarity, set }: loadMoreT) => {
       localCount
     );
 
+    // Add the fetched pokemon cards to the Redux store
     dispatch(addPokiData(pokiValue));
   };
 
   return (
     <div className="flex items-center justify-center gap-4 pb-12">
+      {/* Button to load more pokemon cards */}
       <button
         onClick={handleLoadMore}
         className="flex items-center justify-center gap-2"

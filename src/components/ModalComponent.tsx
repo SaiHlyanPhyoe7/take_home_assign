@@ -12,16 +12,16 @@ import { ActionIcon } from "@mantine/core";
 import PaidSuccess from "./PaidSuccess";
 
 const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
-  const cartItems = useSelector((state: RootState) => state.cart.cartItem);
+  const cartItems = useSelector((state: RootState) => state.cart.cartItem); // Retrieve cart items from the Redux store
   const dispatch = useDispatch();
   const totalQuantity = useSelector(
     (state: RootState) => state.cart.totalQuantity
-  );
-  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
-  const [paid, setPaid] = useState(false);
+  ); // Retrieve the total quantity from the Redux store
+  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice); // Retrieve the total price from the Redux store
+  const [paid, setPaid] = useState(false); // State to manage the paid status
 
   const handlePaid = () => {
-    setPaid(true);
+    setPaid(true); // Function to set the paid status to true
   };
 
   return (
@@ -52,6 +52,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
                       <div>
                         <span className="text-red-500">{item.stock}</span>
                         <span className="text-xs text-gray-400">
+                          {" "}
                           cards left
                         </span>
                       </div>
@@ -63,7 +64,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
                         </p>
                         <div className="">
                           <ActionIcon
-                            onClick={() => dispatch(increaseQuantity(item.id))}
+                            onClick={() => dispatch(increaseQuantity(item.id))} // Increase the quantity of the item
                             sx={{ flex: "none" }}
                           >
                             {item.stock <= 0 ? (
@@ -73,7 +74,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
                             )}
                           </ActionIcon>
                           <ActionIcon
-                            onClick={() => dispatch(decreaseQuantity(item.id))}
+                            onClick={() => dispatch(decreaseQuantity(item.id))} // Decrease the quantity of the item
                             sx={{ flex: "none" }}
                           >
                             {item.quantity > 1 ? (
@@ -85,6 +86,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
                         </div>
                       </div>
                       <p className="text-xs">price</p>
+                      {/* Calculate the item's */}
                       <h4 className="truncate font-semibold text-blue-600">
                         ${item.quantity * item.price}
                       </h4>
@@ -96,7 +98,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
             <div className="absolute bottom-0 z-10 w-full translate-y-48 space-y-6 bg-white pb-8 pt-3 shadow-2xl">
               <button
                 className="mx-auto w-full"
-                onClick={() => dispatch(clearCart())}
+                onClick={() => dispatch(clearCart())} // Clear the cart when the button is clicked
               >
                 <p className="text-center text-sm text-gray-500 underline">
                   Clear all
@@ -105,12 +107,14 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
               <div>
                 <div className="flex items-center justify-between px-20">
                   <h3 className="font-semibold">Total cards</h3>
+                  {/* Display the total quantity */}
                   <h3 className="text-lg font-semibold text-red-500">
                     {totalQuantity}
                   </h3>
                 </div>
                 <div className="flex items-center justify-between px-20">
                   <h3 className="font-semibold">Total price</h3>
+                  {/* Display the total price */}
                   <h3 className="w-3/5 truncate text-end text-lg font-semibold text-red-500">
                     $ {totalPrice}
                   </h3>
@@ -118,7 +122,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
               </div>
               <div className="flex items-center justify-center">
                 <button
-                  onClick={handlePaid}
+                  onClick={handlePaid} // Set the paid status to true when the button is clicked
                   className="rounded-full bg-blue-400 px-12 py-4  text-white"
                 >
                   Pay now
@@ -127,10 +131,11 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
             </div>
           </div>
         )}
+        {/* Render the PaidSuccess component when paid is true */}
         {paid && <PaidSuccess />}
         <button
           className="absolute bottom-0 z-10 translate-y-52 rounded-md bg-red-600 px-4 py-2 text-white shadow-md"
-          onClick={closeModal}
+          onClick={closeModal} // Call the closeModal function when the button is clicked
         >
           x
         </button>

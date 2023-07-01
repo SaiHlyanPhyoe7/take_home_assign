@@ -13,6 +13,7 @@ import CardCompo from "./CardCompo";
 import LoadMoreCompo from "./LoadMoreCompo";
 import { Pokemon } from "@/type";
 
+// This component represents the main body of the TCG Marketplace.
 const MainBodyCompo = ({
   mainCompoPokiValue,
 }: {
@@ -27,6 +28,7 @@ const MainBodyCompo = ({
   const dispatch = useDispatch();
   const count = useSelector((state: RootState) => state.pokimon.loadCount);
 
+  // Fetch data based on filters whenever they change
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,7 +39,6 @@ const MainBodyCompo = ({
           set,
           count
         );
-        // console.log("Poki Value is:", pokiValue);
         setFilterData(pokiValue);
         dispatch(addPokiData(pokiValue));
       } catch (error) {
@@ -48,13 +49,14 @@ const MainBodyCompo = ({
     fetchData();
   }, [debouncedName, type, rarity, set]);
 
+  // Filter data based on count
   useEffect(() => {
-    // console.log("Filter Compo Use Effect");
     if (count !== 0) {
       dispatch(filterPokiData(filterData));
     }
   }, [filterData]);
 
+  // Event handlers for filter changes
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setRarity("");
     setSet("");
@@ -140,12 +142,12 @@ const MainBodyCompo = ({
         </div>
       </div>
 
-      {/* All Card are handle here */}
+      {/* All Card are handled here */}
       <Suspense fallback={<div className="bg-green-300">Loading...</div>}>
         <CardCompo pokiValue={mainCompoPokiValue} />
       </Suspense>
 
-      {/* Load Morebtn */}
+      {/* Load More Button */}
       <Suspense fallback={<div className="bg-green-300">Loading...</div>}>
         <LoadMoreCompo
           debouncedName={debouncedName}

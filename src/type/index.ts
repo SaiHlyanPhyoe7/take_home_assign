@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+// type for pokemon item
 export interface Pokemon {
   id: string;
   img: string;
@@ -9,6 +9,7 @@ export interface Pokemon {
   quantity: number;
 }
 
+// type for filter data
 export interface loadMoreT {
   debouncedName: string;
   type: string;
@@ -16,6 +17,7 @@ export interface loadMoreT {
   set: string;
 }
 
+// type for wrap child
 export interface childT {
   children: React.ReactNode;
 }
