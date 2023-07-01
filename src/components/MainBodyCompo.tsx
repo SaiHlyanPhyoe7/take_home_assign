@@ -10,8 +10,9 @@ import { useDebouncedValue } from "@mantine/hooks";
 import React, { ChangeEvent, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardCompo from "./CardCompo";
+import LoadMoreCompo from "./LoadMoreCompo";
 
-const MainBody = ({ mainCompoPokiValue }: any) => {
+const MainBodyCompo = ({ mainCompoPokiValue }: any) => {
   const [name, setName] = useState<string>("");
   const [debouncedName] = useDebouncedValue(name, 800);
   const [type, setType] = useState<string>("");
@@ -75,7 +76,7 @@ const MainBody = ({ mainCompoPokiValue }: any) => {
   };
 
   return (
-    <div className="pt-24">
+    <div className="pt-16">
       {/* Handle Input */}
       <div className="my-12 flex flex-col items-center justify-center gap-5 lg:flex-row lg:gap-0">
         {/* Name Input */}
@@ -138,8 +139,18 @@ const MainBody = ({ mainCompoPokiValue }: any) => {
       <Suspense fallback={<div className="bg-green-300">Loading...</div>}>
         <CardCompo pokiValue={mainCompoPokiValue} />
       </Suspense>
+
+      {/* Load Morebtn */}
+      <Suspense fallback={<div className="bg-green-300">Loading...</div>}>
+        <LoadMoreCompo
+          debouncedName={debouncedName}
+          type={type}
+          rarity={rarity}
+          set={set}
+        />
+      </Suspense>
     </div>
   );
 };
 
-export default MainBody;
+export default MainBodyCompo;

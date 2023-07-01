@@ -1,4 +1,4 @@
-import MainBody from "@/components/MainBody";
+import MainBodyCompo from "@/components/MainBodyCompo";
 import NavbarCompo from "@/components/NavbarCompo";
 import { getData } from "@/utils/getData";
 import { Suspense, use, useState } from "react";
@@ -24,7 +24,7 @@ export default function Home() {
 
       {/* Mainbody for Search & Filter & Cards */}
       <Suspense fallback={<div className="bg-red-400">Loading...</div>}>
-        <MainBody mainCompoPokiValue={pokiValue} />
+        <MainBodyCompo mainCompoPokiValue={pokiValue} />
       </Suspense>
     </main>
   );
