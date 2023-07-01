@@ -37,7 +37,7 @@ const CardCompo = ({ pokiValue }: any) => {
           return (
             <div
               key={index}
-              className="col-span-12 mx-auto w-10/12 space-y-1 md:col-span-6 lg:col-span-4 lg:w-3/5"
+              className="col-span-12 mx-auto w-10/12 space-y-1 md:col-span-6 md:w-11/12 lg:col-span-4 xl:w-3/5"
             >
               <Suspense fallback={<div>Loading...</div>}>
                 <div className="flex justify-center">

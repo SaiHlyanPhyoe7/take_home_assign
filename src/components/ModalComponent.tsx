@@ -2,7 +2,13 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Image from "next/image";
-import { clearCart } from "@/redux/feature/cart/cartSlice";
+import {
+  clearCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "@/redux/feature/cart/cartSlice";
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { ActionIcon } from "@mantine/core";
 
 const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItem);
@@ -14,7 +20,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
 
   return (
     <div>
-      <div className="fixed -left-40 -top-[650px] flex items-center justify-center">
+      <div className="fixed -left-28 -top-[650px] flex items-center justify-center md:-left-40">
         <div className="absolute inset-0 transition-opacity duration-300"></div>
         <div className="relative z-10 h-[450px] w-[400px] -translate-y-8 overflow-scroll rounded-lg bg-white p-6 shadow-xl transition-transform duration-300">
           {cartItems.map((item) => {
@@ -41,7 +47,33 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
                   </div>
                 </div>
                 <div className="col-span-3 flex flex-col justify-between">
-                  <p className="font-semibold text-blue-600">{item.quantity}</p>
+                  <div className="flex items-center justify-between">
+                    <p className="font-semibold text-blue-600">
+                      {item.quantity}
+                    </p>
+                    <div className="">
+                      <ActionIcon
+                        onClick={() => dispatch(increaseQuantity(item.id))}
+                        sx={{ flex: "none" }}
+                      >
+                        {item.stock <= 0 ? (
+                          <p className="text-red-500">x</p>
+                        ) : (
+                          <IconChevronUp width="20px" />
+                        )}
+                      </ActionIcon>
+                      <ActionIcon
+                        onClick={() => dispatch(decreaseQuantity(item.id))}
+                        sx={{ flex: "none" }}
+                      >
+                        {item.quantity > 1 ? (
+                          <IconChevronDown width="20px" />
+                        ) : (
+                          <p className="text-red-500">x</p>
+                        )}
+                      </ActionIcon>
+                    </div>
+                  </div>
                   <p className="text-xs">price</p>
                   <h4 className="truncate font-semibold text-blue-600">
                     ${item.quantity * item.price}
@@ -81,7 +113,7 @@ const ModalComponent = ({ closeModal }: { closeModal: () => void }) => {
           </div>
         </div>
         <button
-          className="absolute bottom-0 left-1/2 z-10 translate-y-52 rounded-md bg-red-600 px-4 py-2 text-white shadow-md"
+          className="absolute bottom-0 z-10 translate-y-52 rounded-md bg-red-600 px-4 py-2 text-white shadow-md"
           onClick={closeModal}
         >
           x

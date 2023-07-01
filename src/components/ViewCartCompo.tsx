@@ -25,7 +25,7 @@ const ViewCartCompo = () => {
       {!modalOpen && (
         <button
           onClick={handleButtonClick}
-          className="relative w-full rounded-2xl bg-blue-600 py-2 text-xs font-medium text-white shadow-xl"
+          className="relative left-0 w-full rounded-2xl bg-blue-600 py-2 text-xs font-medium text-white shadow-xl md:-left-10"
         >
           <div className="absolute -left-1 -top-1 h-4 w-4 rounded-full bg-red-500">
             {totalQuantity}
