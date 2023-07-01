@@ -9,13 +9,13 @@ import { loadMoreT } from "@/type";
 import { fetchCards } from "@/utils/getData";
 
 const LoadMoreCompo = ({ debouncedName, type, rarity, set }: loadMoreT) => {
-  console.log("From Loadmore Component:", { debouncedName, type, rarity, set });
+  // console.log("From Loadmore Component:", { debouncedName, type, rarity, set });
   const dispatch = useDispatch();
   const [localCount, setLocalCount] = useState<number>(2);
 
   const handleLoadMore = async () => {
     setLocalCount(localCount + 1);
-    console.log("Local Count is : ", localCount);
+    // console.log("Local Count is : ", localCount);
 
     dispatch(incrementLoadCount());
     const pokiValue = await fetchCards(

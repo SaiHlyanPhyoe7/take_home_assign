@@ -16,6 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* Meta Data Icon */}
+      <head>
+        <link rel="icon" href="/pokoLogos.png" />
+      </head>
+
       <body suppressHydrationWarning={true} className={inter.className}>
         <Providers>{children}</Providers>
       </body>

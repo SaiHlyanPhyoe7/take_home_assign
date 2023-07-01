@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project with [`App directory`]
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+# Package Install
+npm install
+
+# to run project
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# I implemented the Project as per Requirements
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [x] Card List:
 
-## Learn More
+  - [x] Implement search/filter:
+    - [x] Name
+    - [x] Type
+    - [x] Rarity
+    - [x] Set
+  - [x] Loading/PageSize limit: `12` cards on each API call
+  - [x] `Loadmore` style pagination
 
-To learn more about Next.js, take a look at the following resources:
+- [x] Card:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - [x] Use `price` data from `cardmarket.prices.*`
+  - [x] Use `stock` from `set.total`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [x] Cart:
+  - [x] Display selected cards as per design
+  - [x] Quantity must be able to:
+    - [x] Increase (respect the stock left limit)
+    - [x] Decrease
+    - [x] Remove
+  - [x] Display the total number of selected cards
+  - [x] Display the total price of all the cards
+  - [x] All cards can be cleared at once from the cart
 
-## Deploy on Vercel
+Addition:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [x] Use strict **TypeScript**.
+- [x] Build near pixel-perfect UIs
+- [x] Responsive to any screen sizes
+- [x] Smooth & Snappy CSS Transitions
+- [x] Server-side Data Fetch using Next.js `App` directory with `route` enter/leave animation
+- [x] Use React hooks
+- [x] Maintain a well-structured and organized repository
+- [x] Commenting the code for better understanding
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Congratulations on completing all the requirements for your Next.js app! Great job!

@@ -12,10 +12,6 @@ const ViewCartCompo = () => {
     (state: RootState) => state.cart.totalQuantity
   );
 
-  const handleButtonClick = () => {
-    setModalOpen(true);
-  };
-
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -24,7 +20,7 @@ const ViewCartCompo = () => {
     <div className="fixed bottom-0 left-1/2 w-40 -translate-x-1/2 -translate-y-3 transform p-4">
       {!modalOpen && (
         <button
-          onClick={handleButtonClick}
+          onClick={() => setModalOpen(true)}
           className="relative left-0 w-full rounded-2xl bg-blue-600 py-2 text-xs font-medium text-white shadow-xl md:-left-10"
         >
           <div className="absolute -left-1 -top-1 h-4 w-4 rounded-full bg-red-500">

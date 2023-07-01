@@ -37,7 +37,7 @@ const MainBodyCompo = ({
           set,
           count
         );
-        console.log("Poki Value is:", pokiValue);
+        // console.log("Poki Value is:", pokiValue);
         setFilterData(pokiValue);
         dispatch(addPokiData(pokiValue));
       } catch (error) {
@@ -49,7 +49,7 @@ const MainBodyCompo = ({
   }, [debouncedName, type, rarity, set]);
 
   useEffect(() => {
-    console.log("Filter Compo Use Effect");
+    // console.log("Filter Compo Use Effect");
     if (count !== 0) {
       dispatch(filterPokiData(filterData));
     }

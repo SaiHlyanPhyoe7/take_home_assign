@@ -1,7 +1,7 @@
 import MainBodyCompo from "@/components/MainBodyCompo";
 import NavbarCompo from "@/components/NavbarCompo";
 import { getData } from "@/utils/getData";
-import { Suspense, use, useState } from "react";
+import { Suspense, use } from "react";
 
 export default function Home() {
   const serverData = use(getData(1));

@@ -16,13 +16,6 @@ export const fetchCards = async (
 ) => {
   const apiUrl = "https://api.pokemontcg.io/v2/cards";
 
-  console.log("From ServerData:", {
-    debouncedName,
-    type,
-    rarity,
-    set,
-  });
-
   const pageSize = 12;
   let queryParams = `pageSize=${pageSize}&page=${count}`;
 
