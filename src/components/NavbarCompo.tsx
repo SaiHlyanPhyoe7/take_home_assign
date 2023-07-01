@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import logo from "@/assets/images/pokoLogos.png";
+import { increaseByAmount } from "@/redux/feature/counter/counterSlice";
 
 const NavbarCompo = () => {
   return (

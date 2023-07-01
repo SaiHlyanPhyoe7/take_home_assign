@@ -1,3 +1,4 @@
+import MainBody from "@/components/MainBody";
 import NavbarCompo from "@/components/NavbarCompo";
 import { Suspense } from "react";
 
@@ -7,6 +8,9 @@ export default function Home() {
       {/* Section For Navbar */}
       <Suspense fallback={<div>Loading...</div>}>
         <NavbarCompo />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainBody />
       </Suspense>
     </main>
   );
