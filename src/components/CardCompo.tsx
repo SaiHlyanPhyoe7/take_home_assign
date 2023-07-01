@@ -1,27 +1,39 @@
-"use client";
-
 import { addPokiData } from "@/redux/feature/pokimon/pokimonSlice";
 import { RootState } from "@/redux/store";
 import { Pokemon } from "@/type";
 import Image from "next/image";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ViewCartCompo from "./ViewCartCompo";
+import { addToCart } from "@/redux/feature/cart/cartSlice";
 
 const CardCompo = ({ pokiValue }: any) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(addPokiData(pokiValue));
   }, []);
 
   const pokemons = useSelector((state: RootState) => state.pokimon.pokemons);
+  const [selectedCards, setSelectedCards] = useState<string[]>([]);
+
   const handleCardSelect = (poki: Pokemon) => {
-    console.log("Handle Card Select: ", poki);
+    const selectedId = poki.id;
+    if (selectedCards.includes(selectedId)) {
+    } else {
+      setSelectedCards((prevSelectedCards) => [
+        ...prevSelectedCards,
+        selectedId,
+      ]);
+    }
+    dispatch(addToCart(poki));
   };
 
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-y-12">
         {pokemons?.map((poki: Pokemon, index: number) => {
+          const isSelected = selectedCards.includes(poki.id);
           return (
             <div
               key={index}
@@ -52,7 +64,9 @@ const CardCompo = ({ pokiValue }: any) => {
               <div className="flex w-full justify-center">
                 <button
                   onClick={() => handleCardSelect(poki)}
-                  className="mt-2 -translate-y-8 rounded-full bg-yellow-500 px-10 py-3"
+                  className={`mt-2 -translate-y-8 rounded-full ${
+                    isSelected ? "bg-gray-950 text-white" : "bg-yellow-500"
+                  } px-10 py-3`}
                 >
                   Select card
                 </button>
@@ -61,6 +75,9 @@ const CardCompo = ({ pokiValue }: any) => {
           );
         })}
       </div>
+
+      {/* Item on the Cart List is displayed */}
+      <ViewCartCompo />
     </div>
   );
 };

@@ -11,7 +11,7 @@ const loading = () => {
       <div className="flex">
         <div className="m-auto h-4 w-3/12 rounded-md bg-gray-300"></div>
       </div>
-      <div className="container mx-auto grid grid-cols-12 gap-12">
+      <div className="container mx-auto grid grid-cols-12 gap-y-12">
         {dummyData.map((data) => {
           return (
             <div

@@ -11,8 +11,13 @@ import React, { ChangeEvent, Suspense, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardCompo from "./CardCompo";
 import LoadMoreCompo from "./LoadMoreCompo";
+import { Pokemon } from "@/type";
 
-const MainBodyCompo = ({ mainCompoPokiValue }: any) => {
+const MainBodyCompo = ({
+  mainCompoPokiValue,
+}: {
+  mainCompoPokiValue: Pokemon[];
+}) => {
   const [name, setName] = useState<string>("");
   const [debouncedName] = useDebouncedValue(name, 800);
   const [type, setType] = useState<string>("");

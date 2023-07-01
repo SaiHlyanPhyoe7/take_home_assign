@@ -46,6 +46,7 @@ export const fetchCards = async (
     rarity: pokemon.rarity,
     price: pokemon.cardmarket?.prices?.averageSellPrice || 0,
     stock: pokemon.set?.total,
+    quantity: 1,
   }));
 
   return pokiValue;

@@ -5,9 +5,9 @@ import { increaseByAmount } from "@/redux/feature/counter/counterSlice";
 
 const NavbarCompo = () => {
   return (
-    <div className="fixed top-0 left-0 w-full z-10">
+    <div className="fixed left-0 top-0 z-10 w-full">
       <div className="relative bg-white shadow-sm">
-        <h2 className="pb-7 pt-4 w-screen text-center text-2xl font-semibold">
+        <h2 className="w-screen pb-7 pt-4 text-center text-2xl font-semibold">
           TCG Marketplace
         </h2>
         <div className="absolute inset-x-0 -bottom-[1.35rem] flex justify-center">
@@ -15,7 +15,7 @@ const NavbarCompo = () => {
             src={logo}
             width={70}
             height={70}
-            alt="Picture of the author"
+            alt="Pokimon Logo"
             className=""
           />
         </div>
