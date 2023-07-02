@@ -37,50 +37,56 @@ const CardCompo = ({ pokiValue }: any) => {
     <div className="container mx-auto">
       <div className="grid grid-cols-12 gap-y-12">
         {/* Render each pokemon card */}
-        {pokemons?.map((poki: Pokemon, index: number) => {
-          const isSelected = selectedCards.includes(poki.id);
-          return (
-            <div
-              key={index}
-              className="col-span-12 mx-auto w-10/12 space-y-1 md:col-span-6 md:w-11/12 lg:col-span-4 xl:w-3/5"
-            >
-              <Suspense fallback={<div>Loading...</div>}>
-                {/* Display the pokemon image */}
-                <div className="flex justify-center">
-                  <Image
-                    className="translate-y-14"
-                    alt={poki.name}
-                    src={poki.img}
-                    width={230}
-                    height={230}
-                  />
+        {pokemons.length === 0 ? (
+          <div className="col-span-12 py-12 text-center text-gray-500">
+            No data available
+          </div>
+        ) : (
+          pokemons.map((poki: Pokemon, index: number) => {
+            const isSelected = selectedCards.includes(poki.id);
+            return (
+              <div
+                key={index}
+                className="col-span-12 mx-auto w-10/12 space-y-1 md:col-span-6 md:w-11/12 lg:col-span-4 xl:w-3/5"
+              >
+                <Suspense fallback={<div>Loading...</div>}>
+                  {/* Display the pokemon image */}
+                  <div className="flex justify-center">
+                    <Image
+                      className="translate-y-14"
+                      alt={poki.name}
+                      src={poki.img}
+                      width={230}
+                      height={230}
+                    />
+                  </div>
+                </Suspense>
+                {/* Display pokemon details */}
+                <div className="space-y-1 rounded-2xl bg-white pb-12 pt-16 shadow-md">
+                  <p className="text-center text-2xl font-bold">{poki.name}</p>
+                  <p className="text-center text-blue-500">
+                    {poki.rarity ? poki.rarity : "rarity"}
+                  </p>
+                  <div className="flex items-center justify-around text-gray-500">
+                    <p>${poki.price}</p>
+                    <p>{poki.stock} left</p>
+                  </div>
                 </div>
-              </Suspense>
-              {/* Display pokemon details */}
-              <div className="space-y-1 rounded-2xl bg-white pb-12 pt-16 shadow-md">
-                <p className="text-center text-2xl font-bold">{poki.name}</p>
-                <p className="text-center text-blue-500">
-                  {poki.rarity ? poki.rarity : "rarity"}
-                </p>
-                <div className="flex items-center justify-around text-gray-500">
-                  <p>${poki.price}</p>
-                  <p>{poki.stock} left</p>
+                {/* Button to select/unselect the card */}
+                <div className="flex w-full justify-center">
+                  <button
+                    onClick={() => handleCardSelect(poki)}
+                    className={`mt-2 -translate-y-8 rounded-full ${
+                      isSelected ? "bg-gray-950 text-white" : "bg-yellow-500"
+                    } px-10 py-3`}
+                  >
+                    Select card
+                  </button>
                 </div>
               </div>
-              {/* Button to select/unselect the card */}
-              <div className="flex w-full justify-center">
-                <button
-                  onClick={() => handleCardSelect(poki)}
-                  className={`mt-2 -translate-y-8 rounded-full ${
-                    isSelected ? "bg-gray-950 text-white" : "bg-yellow-500"
-                  } px-10 py-3`}
-                >
-                  Select card
-                </button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
       {/* Display the cart */}
       <ViewCartCompo />
